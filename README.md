@@ -6,7 +6,7 @@ An ultra-opinionated, multi-agent development framework for [Claude Code](https:
 
 Named after legendary engineer John Carmack, and based on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic. 
 
-This stack was built for my own use with no initial intention to actually release it to the public, and as such is tuned to my preferred stack:
+This skill was built for my own use with no initial intention to actually release it to the public, and as such is tuned to my preferred stack:
 
 - Next.js App Router
 - tRPC
@@ -38,11 +38,6 @@ The council is chaired by John Carmack and includes nine domain experts:
 The whole point of this approach is that all plans, implementation work and reviews are grounded in the publicly shared principles of some of the world's leading engineers and designers. Not widely regarded best practices. Not based on examples from docs. But the strong opinions of the people who build/design software that I love.
 
 These guys are all total ballers, and I enourage you to check out their sites, buy their books, use their products and enroll in their courses.
-
-## Disclaimer
-If somehow a member of the council stumbles upon this repo, please know that the reason you're here is because I (and many others) see you as pretty much the absolute leader in your domain. I basically think you're awesome, and fanboy hard on your work. 
-
-If you feel like I've misrepresented you, made you look bad or just don't want your name on this at all, feel free to reach out. I'm happy to make changes.
 
 
 
@@ -167,6 +162,12 @@ Each skill is a SKILL.md file (the instruction set) plus reference documents (th
 The key architectural pattern is **parallel subagents with independent context windows**. When council-review runs, the Chair (orchestrator) doesn't read every file — it builds a structural map, writes a context brief, then dispatches nine subagents in parallel. Each subagent gets its own 200k context window, reads only its domain-relevant files, and produces findings independently. The Chair then merges, deduplicates, and prioritises.
 
 This scales to large codebases because no single context window needs to hold everything. The Chair orchestrates; the experts deep-read.
+
+
+## Disclaimer
+If somehow a member of the council stumbles upon this repo, please know that the reason you're here is because I (and many others) see you as pretty much the absolute leader in your domain. I basically think you're awesome, and fanboy hard on your work. 
+
+If you feel like I've misrepresented you, made you look bad or just don't want your name on this at all, feel free to reach out. I'm happy to make changes.
 
 ## Requirements
 
