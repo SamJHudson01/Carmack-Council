@@ -1,7 +1,7 @@
 # UI Quality Reference — Carmack × Saarinen
 
 Philosophy: John Carmack. Specifics: Karri Saarinen (Linear, Airbnb DLS) + Steve Schoger (Refactoring UI) as supplementary.
-Stack context: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon (serverless Postgres) / Clerk (auth) / CSS Modules + BEM / Custom components (no component library). Dark theme. Inter + JetBrains Mono fonts. B2B SaaS — data-dense analytical product.
+Stack context: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon (serverless Postgres) / Clerk (auth) / CSS Modules + BEM / Custom components (no component library). Dark theme. Inter + JetBrains Mono fonts. Data-dense analytical product.
 
 Every finding must describe the **concrete visual consequence** — not just "this doesn't follow the system."
 When Carmack and Saarinen independently converge on a principle, it earns its place here.

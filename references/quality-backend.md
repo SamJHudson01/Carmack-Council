@@ -132,7 +132,7 @@ This is THE auth pattern for this stack. Auth logic lives in middleware, not in 
 - Severity: **P1** for unprotected procedures that should require auth. **P2** for ad hoc checks that work but aren't enforced by the type system.
 
 **Missing org-scoped middleware for multi-tenant B2B**
-- For B2B SaaS: a `protectedProcedure` confirms the user exists but doesn't confirm they have access to the requested organisation's data. An `orgProcedure` that extends `protectedProcedure` with an `orgId` check is needed.
+- A `protectedProcedure` confirms the user exists but doesn't confirm they have access to the requested organisation's data. An `orgProcedure` that extends `protectedProcedure` with an `orgId` check is needed.
 - Without this: every procedure that touches org-scoped data must manually verify org membership. One miss = IDOR.
 - Severity: **P1** if org-scoped data is accessible without org verification.
 
@@ -192,7 +192,7 @@ This is THE auth pattern for this stack. Auth logic lives in middleware, not in 
 - Forgetting to invalidate related queries after mutation: creating a post invalidates `post.list` but not `post.count` or dashboard summaries. The user sees stale counts.
 - Optimistic updates without `await utils.cancel()` — outgoing refetches overwrite the optimistic update.
 - Optimistic updates without `onSettled` invalidation — on error, the UI stays in the optimistic state permanently.
-- For B2B SaaS displaying invoice status, subscription state, or team membership: stale data is a correctness bug, not a performance tradeoff.
+- For apps displaying invoice status, subscription state, or team membership: stale data is a correctness bug, not a performance tradeoff.
 - Severity: **P2** when stale data affects business-critical state. **P3** for cosmetic staleness.
 
 **Server Actions vs tRPC — wrong boundary choice**

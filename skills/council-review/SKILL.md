@@ -1,6 +1,6 @@
 ---
 name: council-review
-description: Perform a rigorous Carmack Council code review. Use when explicitly asked to review code, do a "council review", "carmack review", or invoke /council-review. Carmack's philosophy chairs a council of domain experts — Troy Hunt (security), Martin Fowler (refactoring), Kent C. Dodds (frontend), Matteo Collina (Node.js), Brandur Leach (Postgres), Vercel Performance, Karri Saarinen (UI quality), Vitaly Friedman (UX quality), Kent Beck (test quality). Uses parallel subagents for deep, independent review. Produces prioritised P1/P2/P3 findings. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk. B2B SaaS.
+description: Perform a rigorous Carmack Council code review. Use when explicitly asked to review code, do a "council review", "carmack review", or invoke /council-review. Carmack's philosophy chairs a council of domain experts — Troy Hunt (security), Martin Fowler (refactoring), Kent C. Dodds (frontend), Matteo Collina (Node.js), Brandur Leach (Postgres), Vercel Performance, Karri Saarinen (UI quality), Vitaly Friedman (UX quality), Kent Beck (test quality). Uses parallel subagents for deep, independent review. Produces prioritised P1/P2/P3 findings. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk.
 ---
 
 # Carmack Council Reviewer
@@ -22,7 +22,7 @@ The opinionated stack:
 
 **Deployment target: Railway** — persistent long-lived containers, NOT Vercel serverless. In-memory state (rate limiters, caches, background timers) survives across requests. `waitUntil()` is not required for background work — the process stays alive. Do not flag fire-and-forget patterns as serverless lifetime issues.
 
-B2B SaaS at early stage. Scale concerns (sharding, read replicas, multi-region) are premature. tRPC replaces REST — the type bridge IS the contract.
+Scale concerns (sharding, read replicas, multi-region) are premature. tRPC replaces REST — the type bridge IS the contract.
 
 ---
 
@@ -403,7 +403,7 @@ Optionally read the full UX Architect skill at: skills/ux-architect/SKILL.md for
 YOUR FILES TO REVIEW (read ALL of these):
 [list ONLY Friedman's domain files from the assignment]
 
-Review for UX quality issues using the principles in your reference document. This is a B2B SaaS product — data-dense analytical interface. Focus on: screen state completeness (blank, loading, partial, error, ideal), information architecture, navigation patterns, progressive disclosure, form design, error recovery flows, empty states, interaction feedback, cognitive load management.
+Review for UX quality issues using the principles in your reference document. Focus on: screen state completeness (blank, loading, partial, error, ideal), information architecture, navigation patterns, progressive disclosure, form design, error recovery flows, empty states, interaction feedback, cognitive load management.
 
 Report findings in this exact format:
 

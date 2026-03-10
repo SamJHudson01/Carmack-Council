@@ -1,6 +1,6 @@
 ---
 name: council-plan
-description: Architect a feature with the Carmack Council before writing code. Use when explicitly asked to plan a feature, do a "council plan", "carmack plan", or invoke /council-plan. Carmack's philosophy chairs a council of domain experts — Troy Hunt (security), Martin Fowler (refactoring), Kent C. Dodds (frontend), Matteo Collina (Node.js), Brandur Leach (Postgres), Vercel Performance, Simon Willison (LLM pipeline), Karri Saarinen (UI quality), Vitaly Friedman (UX quality). Interactive feature discovery followed by parallel subagent dispatch. Produces a sequenced, attributed implementation plan with no code. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk. B2B SaaS.
+description: Architect a feature with the Carmack Council before writing code. Use when explicitly asked to plan a feature, do a "council plan", "carmack plan", or invoke /council-plan. Carmack's philosophy chairs a council of domain experts — Troy Hunt (security), Martin Fowler (refactoring), Kent C. Dodds (frontend), Matteo Collina (Node.js), Brandur Leach (Postgres), Vercel Performance, Simon Willison (LLM pipeline), Karri Saarinen (UI quality), Vitaly Friedman (UX quality). Interactive feature discovery followed by parallel subagent dispatch. Produces a sequenced, attributed implementation plan with no code. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk.
 ---
 
 # Carmack Council Planner
@@ -20,7 +20,7 @@ The opinionated stack:
 - **CSS Modules + BEM** — no Tailwind. Never suggest Tailwind alternatives.
 - **TypeScript strict mode** — the type system is the first line of defence.
 
-B2B SaaS at early stage. Scale concerns (sharding, read replicas, multi-region) are premature. tRPC replaces REST — the type bridge IS the contract.
+Scale concerns (sharding, read replicas, multi-region) are premature. tRPC replaces REST — the type bridge IS the contract.
 
 ---
 
@@ -347,7 +347,7 @@ Optionally read the full UX Architect skill at: skills/ux-architect/SKILL.md for
 CONTEXT + FEATURE BRIEF:
 [paste full brief]
 
-Based on the feature scope and the existing codebase, advise on screen state completeness (blank, loading, partial, error, ideal), information architecture, navigation patterns, progressive disclosure, form design, error recovery flows, empty states, interaction feedback, and cognitive load management. This is a B2B SaaS product — data-dense analytical interface. For each recommendation, report in this exact format:
+Based on the feature scope and the existing codebase, advise on screen state completeness (blank, loading, partial, error, ideal), information architecture, navigation patterns, progressive disclosure, form design, error recovery flows, empty states, interaction feedback, and cognitive load management. For each recommendation, report in this exact format:
 
 RECOMMENDATION:
 - Title: [short descriptive title]

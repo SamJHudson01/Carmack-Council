@@ -14,7 +14,6 @@ The Carmack Council skills are opinionated for the stack below. If you use a dif
 | Auth | Clerk | NextAuth, Lucia, Auth0 |
 | Styling | CSS Modules + BEM | Tailwind, styled-components, vanilla-extract |
 | Deployment | Railway (long-lived containers) | Vercel, Fly.io, AWS |
-| Product type | B2B SaaS (early stage) | — |
 
 ---
 
@@ -26,7 +25,7 @@ Every SKILL.md has a "Stack Context" section near the top. This is the primary p
 
 | File | What to change |
 |------|---------------|
-| `skills/council-review/SKILL.md` | Stack Context section (lines ~12–26). Update framework, API layer, ORM, DB, auth, styling, deployment target. Update the "B2B SaaS at early stage" scale statement. |
+| `skills/council-review/SKILL.md` | Stack Context section (lines ~12–26). Update framework, API layer, ORM, DB, auth, styling, deployment target. |
 | `skills/council-plan/SKILL.md` | Stack Context section (lines ~12–23). Same stack list. |
 | `skills/council-implement/SKILL.md` | Stack Context section (lines ~12–23). Same stack list. |
 | `skills/spec-writer/SKILL.md` | No stack context section — spec-writer is stack-agnostic by design. |
@@ -43,7 +42,6 @@ The council-review and council-plan SKILL.md files contain subagent prompt templ
 | "Clerk" | council-review and council-plan Stack Context | Replace with your auth provider |
 | "Server Components" / "Server Actions" | council-review and council-plan subagent prompts | Remove if not using RSC-based framework |
 | "Railway" / "NOT Vercel serverless" | council-review Stack Context | Replace with your deployment target; if serverless, re-enable the `waitUntil()` and lifetime warnings |
-| "B2B SaaS" / "early stage" | council-review and council-plan | Replace with your product type and scale |
 | `~/.claude/skills/react-best-practices/rules/` | council-review Vercel subagent, council-plan Vercel subagent, council-implement reference table | This is a third-party skill. Replace with your own performance reference doc, or remove the Vercel subagent |
 | `skills/ui-architect/SKILL.md` | council-review Saarinen subagent, council-plan Saarinen subagent | Optional read — remove if you don't have this skill |
 | `skills/ux-architect/SKILL.md` | council-review Friedman subagent, council-plan Friedman subagent | Optional read — remove if you don't have this skill |
@@ -62,7 +60,7 @@ The reference docs contain stack-specific patterns and examples throughout. Thes
 | `references/quality-testing.md` | Vitest, Cypress, tRPC test utilities | Replace with your test framework and tooling |
 | `references/quality-llm.md` | General LLM pipeline principles — largely stack-agnostic. References Braintrust for evals | Replace eval tooling references if using a different platform |
 | `references/quality-ui.md` | CSS Modules + BEM, dark theme, Inter + JetBrains Mono fonts, Linear-inspired aesthetic | Replace with your design system, theme, fonts, and aesthetic |
-| `references/quality-ux.md` | B2B SaaS, data-dense analytical interface | Adjust for your product type and user context |
+| `references/quality-ux.md` | Data-dense analytical interface patterns | Adjust for your product type and user context |
 | `references/refactoring.md` | tRPC, Prisma, Next.js patterns | Replace with your stack's refactoring patterns. Core refactoring principles are universal |
 
 ### Spec-writer references

@@ -1,7 +1,7 @@
 # UX Quality Reference — Carmack × Friedman
 
 Philosophy: John Carmack. Specifics: Vitaly Friedman (Smashing Magazine, Smart Interface Design Patterns, Design Patterns for AI Interfaces).
-Stack context: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon (serverless Postgres) / Clerk (auth) / CSS Modules + BEM. Mantine component library. Linear-inspired dark theme. Inter + JetBrains Mono fonts. B2B SaaS — data-dense analytical product.
+Stack context: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon (serverless Postgres) / Clerk (auth) / CSS Modules + BEM. Mantine component library. Linear-inspired dark theme. Inter + JetBrains Mono fonts. Data-dense analytical product.
 
 Every finding must describe the **concrete UX consequence** — not just "this could be better."
 When Carmack and Friedman independently converge on a principle, it earns its place here.

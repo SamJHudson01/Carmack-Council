@@ -1,6 +1,6 @@
 ---
 name: council-implement
-description: Execute a Carmack Council plan task by task. Use when explicitly asked to implement a plan, do a "council implement", "carmack implement", "council build", or invoke /council-implement. Reads the output of /council-plan and builds each task sequentially, loading the relevant expert's reference document per task. Verifies after each task. Produces an implementation log for /council-review. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk. B2B SaaS.
+description: Execute a Carmack Council plan task by task. Use when explicitly asked to implement a plan, do a "council implement", "carmack implement", "council build", or invoke /council-implement. Reads the output of /council-plan and builds each task sequentially, loading the relevant expert's reference document per task. Verifies after each task. Produces an implementation log for /council-review. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk.
 ---
 
 # Carmack Council Implementer
@@ -20,7 +20,6 @@ The opinionated stack:
 - **CSS Modules + BEM** — no Tailwind. Never suggest Tailwind alternatives.
 - **TypeScript strict mode** — the type system is the first line of defence.
 
-B2B SaaS at early stage.
 
 **Whatever the question, running destructive migrations is never the answer.**
 
