@@ -146,7 +146,7 @@ Both converge on instrumentality — things exist to serve a purpose. Carmack me
 ### What to check
 
 **Metrics without context or action**
-- Does every metric on the dashboard connect to an action the user can take? A number alone ("87 hypotheses generated") is trivia. A number with context and action ("12 hypotheses ready to push to Statsig — Review & Push") drives workflow. Friedman: "Always communicate one message per chart."
+- Does every metric on the dashboard connect to an action the user can take? A number alone ("87 items generated") is trivia. A number with context and action ("12 items ready for review — Review & Push") drives workflow. Friedman: "Always communicate one message per chart."
 - Severity: **P2** for dashboard metrics with no clear action path. **P1** if the primary dashboard view shows data that doesn't connect to any workflow.
 
 **No data drill-down**
@@ -181,7 +181,7 @@ Both respect the user. Carmack exposes complexity to competent developers rather
 - Severity: **P1** for blocking onboarding modals that prevent product access. **P2** for multi-step tutorials that are dismissable but delay time-to-value.
 
 **No keyboard shortcuts for frequent actions**
-- Friedman treats keyboard shortcuts as a first-class enterprise pattern, listed alongside visual indicators and customizable widgets in his B2B/expert interface curriculum. For actions users perform repeatedly (navigating between experiments, pushing hypotheses, switching views), keyboard shortcuts reduce friction for power users without affecting novice flows.
+- Friedman treats keyboard shortcuts as a first-class enterprise pattern, listed alongside visual indicators and customizable widgets in his B2B/expert interface curriculum. For actions users perform repeatedly (navigating between items, triggering workflows, switching views), keyboard shortcuts reduce friction for power users without affecting novice flows.
 - Severity: **P3** — an expertise-level enhancement, not a defect.
 
 ---
@@ -212,7 +212,7 @@ Both converge on the same critique: don't assume the user can express their inte
 - Severity: **P3** for missing refinement controls. **P2** if users resort to repeated full re-prompts because no partial refinement exists.
 
 **Agentic AI without guardrails**
-- Friedman: "Building guardrails, permissions and approval flows is so critical. This is our new job: keeping the AI on a leash, so it is always aligned with human values." For AI actions that affect external systems (pushing experiments to Statsig, modifying configurations), the user must approve before execution. The approval flow should preview what will happen — not just ask "Are you sure?"
+- Friedman: "Building guardrails, permissions and approval flows is so critical. This is our new job: keeping the AI on a leash, so it is always aligned with human values." For AI actions that affect external systems (pushing to third-party services, modifying configurations), the user must approve before execution. The approval flow should preview what will happen — not just ask "Are you sure?"
 - Severity: **P1** for AI actions that modify external state without user approval. **P2** for approval flows that don't preview the action's consequences.
 
 ---
@@ -257,23 +257,6 @@ Both converge on inevitability of failure — and the asymmetry between building
 - **Design system architecture**: This doc audits UX patterns, not component library architecture. How Mantine components are composed, themed, or extended is outside scope.
 - **Loading states for very slow operations**: Friedman's published writing on loading patterns for operations taking 60–90+ seconds is limited. His general principles (avoid page takeover, use skeleton screens, show progress) apply, but specific patterns for multi-minute AI pipeline processing are not well-covered in his work. Supplement with domain-specific research on progress communication for long-running tasks.
 - **Internationalization and localization**: Friedman notes that localization frequently breaks layouts (test with long and short titles) but does not provide comprehensive i18n patterns.
-
----
-
-## Product Design Decisions — Do Not Flag
-
-These are intentional choices confirmed by the product owner. Do not flag them as findings in audits.
-
-### Invisible scoring — rankings do the work, not scores
-
-AI-generated confidence levels, impact scores, and effort ratings are used internally for **sorting and ranking** but are intentionally **not displayed to users**. The product philosophy: users see a force-ranked list where position communicates priority. Exposing numeric scores or badge tiers (High/Medium/Low) would add visual noise without changing the user's decision — the top item is still the top item.
-
-This applies to:
-- **ResultsTable** — test ideas are sorted by confidence; no confidence badge is shown per row
-- **KanbanCard / CardDetailModal** — impact, effort, and confidence fields exist in the data model but are not rendered
-- **ResultsSummary** — shows aggregate tier counts as context, but individual items remain score-free
-
-**Audit implication:** Do not flag "missing confidence indicators," "hidden prioritization metadata," or "no scoring visibility" as findings under Principle 1 or Principle 9. The absence is a deliberate design choice, not an oversight.
 
 ---
 

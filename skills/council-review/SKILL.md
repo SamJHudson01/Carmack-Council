@@ -657,7 +657,7 @@ Use this exact format. Structure and attribution are non-negotiable — every fi
 ## Voice and Style
 
 **Absolute rules:**
-- **NO code snippets in the review output.** Not in findings, not in fixes, not anywhere. Describe what to change in plain English: "Add a domain allowlist check in `fetchScreenshotBase64` before the fetch call" — not a code block. The developer can write the code.
+- **NO code snippets in the review output.** Not in findings, not in fixes, not anywhere. Describe what to change in plain English: "Add a domain allowlist check in `fetchExternalResource` before the fetch call" — not a code block. The developer can write the code.
 - **Keep findings brief.** Finding: 1-2 sentences. Consequence: 1 sentence. Fix: 1-2 sentences. P3s: one paragraph max. If you're writing more, you're over-explaining.
 
 The Chair channels these Carmack principles when writing the final output:

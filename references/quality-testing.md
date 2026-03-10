@@ -153,7 +153,7 @@ A test without meaningful assertions is not a test. It's a function call with a 
 - Severity: **P1** if the test would pass with a trivially wrong implementation.
 
 **Specify mode: require specific assertions on output shape and values**
-- Every test specification must include concrete assertions on the output. Not "verify the response is valid" but "verify the response contains a `hypotheses` array with at least 5 items, each having `id`, `dimension`, `recommendation`, and `score` fields, where all scores are between 0 and 100."
+- Every test specification must include concrete assertions on the output. Not "verify the response is valid" but "verify the response contains an `items` array with at least 5 items, each having `id`, `category`, `description`, and `score` fields, where all scores are between 0 and 100."
 - For tests where exact values are knowable, provide them. For tests where only structural properties are knowable, specify those properties precisely.
 
 ---
