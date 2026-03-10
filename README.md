@@ -1,12 +1,12 @@
 # The Carmack Council
 
-An ultra-opinionated, multi-agent development framework for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Founded on my personal belief that off-the-shelf Claude Code skills often lead to average results, and stack specific skills based on real world, battle tested engineering principles leads to awesomeness. 
+An ultra-opinionated, multi-agent development framework for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Founded on my personal belief that off-the-shelf Claude Code skills often lead to average results, and stack specific skills based on real world, battle tested engineering principles lead to awesomeness. 
 
 ## But why The Carmack Council?
 
-Named after legendary engineer John Carmack, and based on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic. 
+Named after the GOAT engineer and all around legend John Carmack, and built on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic.
 
-This skill was built for my own use with no initial intention to actually release it to the public, and as such is tuned to my preferred stack:
+This skill was built for my own use with no initial intention to actually release it, and as such is tuned to my preferred greenfield stack:
 
 - Next.js App Router
 - tRPC
@@ -16,11 +16,11 @@ This skill was built for my own use with no initial intention to actually releas
 - CSS Modules + BEM
 - Railway
 
-I have reasons (ranging from solid to near arbitrary) for picking all of these technologies. This is what I used pre-AI, because it allowed me to get new projects spun up and working in a short space of time. It offers great performance, generous free tiers and decent scalability. 
+I have reasons (ranging from solid to near arbitrary) for picking all of these technologies. This iI've used since before AI, because it allows me to get projects spun up and working quickly. It offers decent performance, generous free tiers and good scalability. 
 
-I'm aware that some people hate this stack or elements of it. I'm OK with that. The main point of the repo is to introduce the council concept, and it's easy enough to adapt this to your preferred/existing stack.
+I know some people hate this stack or elements of it. I'm OK with that. The main point is to introduce the council concept. It's easy enough to adapt this to your preferred/existing stack.
 
-The council is chaired by John Carmack and includes nine domain experts:
+The council is chaired by John Carmack and includes 10 domain experts:
 
 | Expert | Domain | Reference Doc | Link |
 |--------|--------|--------------|------|
@@ -35,9 +35,9 @@ The council is chaired by John Carmack and includes nine domain experts:
 | Vitaly Friedman | UX Quality | `quality-ux.md` | https://www.smashingmagazine.com/author/vitaly-friedman/ |
 | Kent Beck | Test Quality | `quality-testing.md` | https://kentbeck.com/ |
 
-The whole point of this approach is that all plans, implementation work and reviews are grounded in the publicly shared principles of some of the world's leading engineers and designers. Not widely regarded best practices. Not based on examples from docs. But the strong opinions of the people who build/design software that I love.
+Every plan, implementation decision and review finding is grounded in the publicly shared expertise of domain leaders who build and design world-class software. Not "best practices." Not docs examples. The strong opinions of engineers and designers whose work is next level.
 
-These guys are all total ballers, and I enourage you to check out their sites, buy their books, use their products and enroll in their courses.
+They're all total ballers. Check out their sites, buy their books, use their products, enroll in their courses.
 
 
 
@@ -51,19 +51,19 @@ These guys are all total ballers, and I enourage you to check out their sites, b
 
 1. **Spec Writer** — Produces structured specifications with Job Stories, Gherkin acceptance criteria, and three-tier boundaries. Adaptive complexity: small changes get 200 words, features get 500–800, products get up to 2,000.
 
-2. **Council Plan** — Carmack chairs nine domain experts who independently advise on how to build the feature. Interactive discovery with the developer, then parallel subagent dispatch. Produces a sequenced, dependency-ordered implementation plan with no code.
+2. **Council Plan** — Carmack chairs 10 domain experts who independently advise on how to build the feature. Interactive discovery with the developer, then parallel subagent dispatch. Produces a sequenced, dependency-ordered implementation plan with no code.
 
 3. **Council Implement** — Executes the plan task by task. Loads each expert's reference document before implementing their task. Verifies (type check, lint, test) after every task. Produces an implementation log.
 
-4. **Council Review** — Nine domain experts independently review the code in parallel, each in their own context window. The Chair merges, deduplicates, and prioritises into P1/P2/P3 findings. Automated checks (tsc, lint, vitest, cypress) run first.
+4. **Council Review** — 10 domain experts independently review the code in parallel, each in their own context window. The Chair merges, deduplicates, and prioritises into P1/P2/P3 findings. Automated checks (tsc, lint, vitest, cypress) run first.
 
-*** Not every expert participates in every skill. The plan uses all ten. The review uses nine (no Willison — most code reviews don't involve LLM pipelines). The implementer loads the relevant expert per task. ***
+*** Not every expert participates in every skill. The plan uses all ten. The review uses 10 (no Willison — most code reviews don't involve LLM pipelines). The implementer loads the relevant expert per task. ***
 
 
 ### The Vercel Performance Expert
-The Vercel Performance subagent references ~/.claude/skills/react-best-practices/rules/ — this is a separate Vercel skill, not part of this repo. If you don't have it installed, the Vercel subagent will fail gracefully (no recommendations returned), and the other eight experts will work fine. The review and plan will note "Vercel — no findings" in the breakdown, which is accurate if slightly misleading.
+The Vercel Performance subagent references ~/.claude/skills/react-best-practices/rules/ — this is a separate Vercel skill, not part of this repo. If you don't have it installed, the Vercel subagent will fail gracefully (no recommendations returned), and the other 10 experts will work fine. The review and plan will note "Vercel — no findings" in the breakdown, which is accurate if slightly misleading. you can also just delete the Vercel expert from the Skill.md file
 
-If you want the full nine-expert experience, install the [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills) skill separately. If you don't care about Next.js performance auditing, ignore this entirely — the council works without it.
+If you want the full 10-expert experience, install the [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills) skill separately. If you don't care about Next.js performance auditing, ignore this entirely — the council works without it.
 
 
 ## Installation
@@ -72,8 +72,8 @@ If you want the full nine-expert experience, install the [Vercel React Best Prac
 
 Download individual `.skill` packages from the [`dist/`](dist/) directory:
 
-- [`council-review.skill`](dist/council-review.skill) — Code review with nine parallel experts
-- [`council-plan.skill`](dist/council-plan.skill) — Feature planning with nine parallel experts
+- [`council-review.skill`](dist/council-review.skill) — Code review with 10 parallel experts
+- [`council-plan.skill`](dist/council-plan.skill) — Feature planning with 10 parallel experts
 - [`council-implement.skill`](dist/council-implement.skill) — Plan execution with expert-guided implementation
 - [`spec-writer.skill`](dist/spec-writer.skill) — Structured specification generation
 
@@ -159,7 +159,7 @@ The principles are universal — simplicity, correctness, economic thinking. Onl
 
 Each skill is a SKILL.md file (the instruction set) plus reference documents (the domain knowledge). The SKILL.md tells Claude Code how to orchestrate — which subagents to spawn, what phases to follow, what output format to use. The reference docs give each subagent deep domain expertise.
 
-The key architectural pattern is **parallel subagents with independent context windows**. When council-review runs, the Chair (orchestrator) doesn't read every file — it builds a structural map, writes a context brief, then dispatches nine subagents in parallel. Each subagent gets its own 200k context window, reads only its domain-relevant files, and produces findings independently. The Chair then merges, deduplicates, and prioritises.
+The key architectural pattern is **parallel subagents with independent context windows**. When council-review runs, the Chair (orchestrator) doesn't read every file — it builds a structural map, writes a context brief, then dispatches 10 subagents in parallel. Each subagent gets its own 200k context window, reads only its domain-relevant files, and produces findings independently. The Chair then merges, deduplicates, and prioritises.
 
 This scales to large codebases because no single context window needs to hold everything. The Chair orchestrates; the experts deep-read.
 
@@ -167,7 +167,9 @@ This scales to large codebases because no single context window needs to hold ev
 ## Disclaimer
 If somehow a member of the council stumbles upon this repo, please know that the reason you're here is because I (and many others) see you as pretty much the absolute leader in your domain. I basically think you're awesome, and fanboy hard on your work. 
 
-If you feel like I've misrepresented you, made you look bad or just don't want your name on this at all, feel free to reach out. I'm happy to make changes.
+If you feel like I've misrepresented you, made you look bad or just don't want your name on this at all, feel free to reach out. I'm happy to make changes. 
+
+Please don't sue me x
 
 ## Requirements
 

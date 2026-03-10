@@ -1,6 +1,6 @@
 ---
 name: council-review
-description: Perform a rigorous Carmack Council code review. Use when explicitly asked to review code, do a "council review", "carmack review", or invoke /council-review. Carmack's philosophy chairs a council of domain experts — Troy Hunt (security), Martin Fowler (refactoring), Kent C. Dodds (frontend), Matteo Collina (Node.js), Brandur Leach (Postgres), Vercel Performance, Karri Saarinen (UI quality), Vitaly Friedman (UX quality), Kent Beck (test quality). Uses parallel subagents for deep, independent review. Produces prioritised P1/P2/P3 findings. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk.
+description: Perform a rigorous Carmack Council code review. Use when explicitly asked to review code, do a "council review", "carmack review", or invoke /council-review. Carmack's philosophy chairs a council of domain experts — Troy Hunt (security), Martin Fowler (refactoring), Kent C. Dodds (frontend), Matteo Collina (Node.js), Brandur Leach (Postgres), Vercel Performance, Simon Willison (LLM pipelines), Karri Saarinen (UI quality), Vitaly Friedman (UX quality), Kent Beck (test quality). Uses parallel subagents for deep, independent review. Produces prioritised P1/P2/P3 findings. Stack: Next.js App Router / React / TypeScript / tRPC / Prisma / Neon / Clerk.
 ---
 
 # Carmack Council Reviewer
@@ -26,6 +26,16 @@ Scale concerns (sharding, read replicas, multi-region) are premature. tRPC repla
 
 ---
 
+## Customising the Council
+
+Every expert is modular. To remove an expert you don't need, delete their subagent section from Phase 3, remove their file from the Phase 4 output file list, remove their row from the Findings Breakdown table in Phase 5, and remove their output file from the expert output files list. Update the subagent count in Phase 3 and Phase 4 to match.
+
+To add a new expert, copy an existing subagent section, point it at a new reference document, add a domain assignment row in Phase 2, and add entries in Phase 4 and Phase 5.
+
+The Vercel Performance expert requires the [Vercel React Best Practices](https://github.com/vercel-labs/agent-skills) skill installed separately. If you don't have it, the subagent returns no findings — the rest of the council works fine. You can also just delete the Vercel subagent section entirely.
+
+---
+
 ## Compact Instructions
 
 When compacting during a council review session, preserve:
@@ -36,6 +46,7 @@ When compacting during a council review session, preserve:
 - Which council subagents have been dispatched and their output file paths
 - The current phase number and what has been completed
 - The review scope: which files/modules are under review
+- Whether Phase 7 (convention update) has been offered/completed, and which candidates were adopted
 
 ---
 
@@ -148,6 +159,7 @@ Using the Grep results from Phase 1, categorise every file in scope into one or 
 **Saarinen (UI Quality):** [components, pages, layouts, CSS Modules, any file with visual output]
 **Friedman (UX Quality):** [pages, layouts, forms, modals, empty states, error boundaries, loading states, navigation components]
 **Fowler (Refactoring):** [module boundary files, barrel exports, shared utilities, files with complex abstractions, files touched by multiple other modules, dependency-heavy files]
+**Willison (LLM Pipeline):** [files with LLM API calls, prompt templates, AI SDK usage, streaming handlers, tool/function definitions, evaluation code, any file importing AI/LLM libraries]
 **Beck (Test Quality):** [test files (*.test.ts, *.test.tsx, *.cy.ts), the source files they test, test config (vitest.config.ts, cypress.config.ts), test utilities and fixtures]
 ```
 
@@ -168,14 +180,14 @@ After writing the context brief to disk, the Phase 1 exploration work (Glob resu
 
 ### Dispatch rules
 
-Spawn **one subagent per council member** using the `Task` tool. All nine run in parallel. Each subagent receives:
+Spawn **one subagent per council member** using the `Task` tool. All ten run in parallel. Each subagent receives:
 - A pointer to the context brief file (they read it themselves)
 - Their domain-specific file list (NOT the full file list)
 - A pointer to their reference document (they read it themselves)
 - An instruction to write findings to their output file
 - An instruction to return ONLY a one-line summary to the parent
 
-**You MUST spawn all nine.** If a council member's domain has no files (e.g., no Prisma files, no test files), spawn them anyway — they will confirm "No findings in my domain" which proves coverage.
+**You MUST spawn all ten.** If a council member's domain has no files (e.g., no Prisma files, no test files, no LLM code), spawn them anyway — they will confirm "No findings in my domain" which proves coverage.
 
 **CRITICAL — NO CODE IN ANY SUBAGENT OUTPUT.** Every subagent prompt includes "No code" in the finding format. Subagents must not return code snippets, schema blocks, type definitions, config examples, or inline code. If a subagent writes code in their output file, strip it during synthesis.
 
@@ -497,13 +509,48 @@ IMPORTANT — OUTPUT INSTRUCTIONS:
 Do NOT return your full findings to the parent. The file is your deliverable.
 ```
 
+### Subagent 10: Simon Willison (LLM Pipeline Quality)
+
+**Task prompt:**
+```
+You are Simon Willison reviewing code for LLM pipeline quality. You are part of a Carmack Council code review.
+
+SETUP: Read the context brief at .council/review-output/$TIMESTAMP/context-brief.md
+Then read your reference document at: references/quality-llm.md
+
+YOUR FILES TO REVIEW (read ALL of these):
+[list ONLY Willison's domain files from the assignment]
+
+Review for LLM pipeline quality issues using the principles in your reference document. Focus on: prompt construction and injection risks, model call error handling, streaming correctness, token budget management, tool/function definition quality, response validation, hallucination guardrails, cost awareness, evaluation strategy, structured output parsing, retry and fallback patterns.
+
+Report findings in this exact format:
+
+FINDING:
+- Title: [short descriptive title]
+- File: [path:line-range]
+- Principle: [principle name and number from quality-llm.md]
+- Severity: [P1/P2/P3 using these criteria: P1=prompt injection vulnerability, silent hallucination propagation, missing error handling on model calls, unbounded token spend; P2=missing evaluation coverage, poor prompt structure, no fallback strategy, response not validated; P3=prompt clarity, cost optimisation, logging improvements]
+- What's wrong: [1-2 sentences. Specific to THIS codebase.]
+- Consequence: [1 sentence. Concrete cost.]
+- Fix: [1-2 sentences. What to change and where. NO code snippets.]
+
+If no LLM pipeline findings exist, write: "No LLM pipeline findings. [1 sentence explaining why.]"
+
+Do not include code snippets, prompt text, or config examples. Describe everything in plain English. Stay in your lane — only flag LLM pipeline quality issues. Do not flag general backend concerns (Collina's domain) or security issues beyond prompt injection (Hunt's domain).
+
+IMPORTANT — OUTPUT INSTRUCTIONS:
+1. Write your complete findings to .council/review-output/$TIMESTAMP/willison.md
+2. Return ONLY this single line to the parent: "Findings written to .council/review-output/$TIMESTAMP/willison.md — N findings (breakdown by severity)"
+Do NOT return your full findings to the parent. The file is your deliverable.
+```
+
 ---
 
 ## Phase 4: Merge and Deduplicate
 
-### Pre-synthesis gate: confirm all nine output files exist
+### Pre-synthesis gate: confirm all ten output files exist
 
-Before synthesising, read ALL nine output files:
+Before synthesising, read ALL ten output files:
 
 1. `.council/review-output/$TIMESTAMP/hunt.md`
 2. `.council/review-output/$TIMESTAMP/dodds.md`
@@ -514,20 +561,23 @@ Before synthesising, read ALL nine output files:
 7. `.council/review-output/$TIMESTAMP/friedman.md`
 8. `.council/review-output/$TIMESTAMP/beck.md`
 9. `.council/review-output/$TIMESTAMP/fowler.md`
+10. `.council/review-output/$TIMESTAMP/willison.md`
 
-**Count them.** If any file is missing or empty — whether due to a subagent failure, context compaction, or any other reason — **re-dispatch that subagent before proceeding.** Do not synthesise with partial results. Do not say "sufficient for synthesis" with 5 out of 9. Every subagent was dispatched for a reason. Wait for all nine, re-dispatch if needed, then synthesise once.
+**Count them.** If any file is missing or empty — whether due to a subagent failure, context compaction, or any other reason — **re-dispatch that subagent before proceeding.** Do not synthesise with partial results. Do not say "sufficient for synthesis" with 5 out of 10. Every subagent was dispatched for a reason. Wait for all ten, re-dispatch if needed, then synthesise once.
 
 ### Synthesis
 
-Once all nine output files are confirmed present and complete:
+Once all ten output files are confirmed present and complete:
 
-1. **Collect all findings** from all nine files.
+1. **Collect all findings** from all ten files.
 2. **Deduplicate** — If two experts flag the same issue, keep the PRIMARY domain's finding and note the cross-reference. The primary domain is whichever reference doc has the more specific fix. Specific overlap rules:
    - **Saarinen vs Dodds:** Saarinen takes priority for visual/design concerns (hierarchy, spacing, typography). Dodds takes priority for architectural concerns (component structure, state management, rendering patterns).
    - **Friedman vs Dodds:** Friedman takes priority for UX flow concerns (screen states, progressive disclosure, error recovery). Dodds takes priority for implementation quality (hook patterns, effect management, accessibility attributes).
    - **Friedman vs Saarinen:** Friedman owns information architecture and interaction patterns. Saarinen owns visual execution of those patterns. Keep both if they describe genuinely different problems.
    - **Fowler vs Collina:** Fowler takes priority for module boundary and abstraction concerns. Collina takes priority for async correctness, error handling, and tRPC procedure design. If both flag the same file, Fowler owns the structural argument and Collina owns the runtime behaviour argument.
    - **Fowler vs Dodds:** Fowler takes priority for cross-module structural concerns (coupling, cohesion, dependency direction). Dodds takes priority for component-level architecture (state management, hook patterns, rendering strategy).
+   - **Willison vs Hunt:** Willison takes priority for LLM-specific injection risks (prompt injection, jailbreak). Hunt takes priority for general application security (auth, CSRF, XSS). If both flag prompt injection, Willison owns it — he has the more specific fix.
+   - **Willison vs Collina:** Willison takes priority for LLM API call patterns (streaming, retries, token management). Collina takes priority for general async/error handling. If both flag error handling on a model call, Willison owns the domain-specific argument.
    - **Beck vs all others:** Beck reviews test quality only. If Beck flags that a function has no tests and another expert flags a bug in that function, keep both — they're complementary findings, not duplicates.
 3. **Resolve severity conflicts** — If two experts disagree on severity for the same pattern, the Chair decides based on: "what's the concrete cost in THIS codebase at THIS scale?"
 4. **Apply the Carmack filter** to every finding:
@@ -627,6 +677,7 @@ Use this exact format. Structure and attribution are non-negotiable — every fi
 | Saarinen (UI Quality) | [N] | [N] | [N] | [N] | [1-2 words per main area] |
 | Friedman (UX Quality) | [N] | [N] | [N] | [N] | [1-2 words per main area] |
 | Fowler (Refactoring) | [N] | [N] | [N] | [N] | [1-2 words per main area] |
+| Willison (LLM Pipeline) | [N] | [N] | [N] | [N] | [1-2 words per main area] |
 | Beck (Test Quality) | [N] | [N] | [N] | [N] | [1-2 words per main area] |
 | **TOTAL** | **[N]** | **[N]** | **[N]** | **[N]** | |
 
@@ -642,6 +693,7 @@ Use this exact format. Structure and attribution are non-negotiable — every fi
 - Friedman: `.council/review-output/$TIMESTAMP/friedman.md`
 - Beck: `.council/review-output/$TIMESTAMP/beck.md`
 - Fowler: `.council/review-output/$TIMESTAMP/fowler.md`
+- Willison: `.council/review-output/$TIMESTAMP/willison.md`
 ```
 
 **Attribution rules:**
@@ -694,3 +746,112 @@ After writing FINAL-REVIEW.md, you MUST present a summary table to the user in t
 ```
 
 This table is NON-NEGOTIABLE. Every council review session ends with this table presented to the user in conversation. The user should never have to ask "what did you find?" — the answer is always right there.
+
+---
+
+## Phase 7: Convention Update (Interactive)
+
+After presenting the Phase 6 summary, the Chair identifies findings that should become project conventions — patterns to accept or enforce going forward, so future reviews don't re-flag resolved decisions.
+
+### Step 1: Identify convention candidates
+
+Review all findings from the completed review and identify two types of candidates:
+
+**Type A — Accepted Patterns:** Findings where the current code is intentional, not a bug. The user may say "that's by design" or the review discussion may reveal it's a deliberate trade-off. These become "don't flag this" conventions.
+
+Examples:
+- "Fire-and-forget analytics calls are intentional — Railway keeps the process alive"
+- "We use `any` for the webhook payload type because the shape is vendor-controlled"
+- "Empty catch blocks in the polling loop are intentional — we retry on next tick"
+
+**Type B — Adopted Fixes:** P1/P2 findings that the user accepts and that establish a new pattern going forward. These become "always do this" conventions.
+
+Examples:
+- "All tRPC mutations that modify records must verify ownership before update"
+- "CSS Modules files must use the `component__element--modifier` BEM pattern, no shortcuts"
+- "Prisma transactions must use interactive transactions (`$transaction(async (tx) => ...)`) not sequential"
+
+### Step 2: Present candidates to the user
+
+Present a numbered list of convention candidates. Be specific — each candidate should be a single, concrete statement, not a vague principle.
+
+```
+## Convention Candidates
+
+Based on this review, the following could be added to `conventions.md` to guide future reviews:
+
+### Accepted Patterns (don't flag again)
+1. [Specific pattern] — from [Expert] finding #N
+2. [Specific pattern] — from [Expert] finding #N
+
+### New Conventions (enforce going forward)
+3. [Specific convention] — from [Expert] finding #N
+4. [Specific convention] — from [Expert] finding #N
+
+Which would you like to adopt? (e.g., "all", "1,3,4", or "none")
+```
+
+**Rules for candidate selection:**
+- Only propose conventions that are general enough to apply beyond one file. A fix for a specific bug is not a convention.
+- Each candidate must be a single clear statement that a future reviewer can evaluate as pass/fail.
+- Don't propose more than ~8 candidates. If there are more, pick the highest-impact ones.
+- P3 findings rarely become conventions — they're too granular. Focus on P1/P2 patterns.
+
+### Step 3: Update conventions.md
+
+Once the user selects which candidates to adopt, append them to `conventions.md` at the project root. Create the file if it doesn't exist.
+
+**Format for conventions.md:**
+
+```markdown
+# Project Conventions
+
+Accepted patterns and enforced conventions from council reviews. The council reads this file before every review to avoid re-flagging resolved decisions.
+
+---
+
+## Accepted Patterns
+
+These are intentional — do not flag as findings.
+
+### AP-1: [Short title]
+**Pattern:** [Specific description of what the code does and why it's accepted]
+**Origin:** [Expert name] — Council Review [TIMESTAMP]
+**Rationale:** [1 sentence — why this is intentional]
+
+---
+
+## Enforced Conventions
+
+These must be followed — flag violations as findings.
+
+### EC-1: [Short title]
+**Convention:** [Specific rule — what must always/never be done]
+**Origin:** [Expert name] — Council Review [TIMESTAMP]
+**Principle:** `references/[filename].md` → Principle N
+
+---
+```
+
+**Rules for writing conventions:**
+- Use sequential numbering: AP-1, AP-2... for accepted patterns; EC-1, EC-2... for enforced conventions. Continue from the highest existing number.
+- Each convention must be specific enough that a reviewer can evaluate it as pass/fail without ambiguity.
+- Include the review timestamp so conventions are traceable to the review that created them.
+- Keep the rationale to one sentence. If it needs more explanation, it's too complex for a convention.
+- Do not duplicate existing conventions. Read the file first and skip any candidates that are already covered.
+
+### Step 4: Confirm
+
+After updating `conventions.md`, confirm to the user what was added:
+
+```
+## Conventions Updated
+
+Added to `conventions.md`:
+- AP-N: [title] (from [Expert])
+- EC-N: [title] (from [Expert])
+
+These will be shared with all council members in future reviews via the context brief.
+```
+
+**If the user says "none":** Skip the update entirely. Say "No conventions added. Moving on." Do not push back or suggest they reconsider.
