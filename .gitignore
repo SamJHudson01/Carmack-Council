@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Build artifacts (temporary reference copies in skill dirs)
+skills/*/references/
+
+# IDE
+.vscode/
+.idea/

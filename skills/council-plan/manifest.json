@@ -1,0 +1,12 @@
+{
+  "references": [
+    "security.md",
+    "refactoring.md",
+    "quality-backend.md",
+    "quality-frontend.md",
+    "quality-postgres.md",
+    "quality-llm.md",
+    "quality-ui.md",
+    "quality-ux.md"
+  ]
+}

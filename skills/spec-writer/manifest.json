@@ -1,0 +1,10 @@
+{
+  "references": [
+    "anti-patterns.md",
+    "acceptance-criteria-guide.md",
+    "feature-spec.md",
+    "product-spec.md",
+    "small-change.md",
+    "boundary-examples.md"
+  ]
+}
