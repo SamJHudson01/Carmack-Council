@@ -64,6 +64,13 @@ If you feel like I've misrepresented you, made you look bad or just don't want y
 
 *** Not every expert participates in every skill. The plan uses all ten. The review uses nine (no Willison — most code reviews don't involve LLM pipelines). The implementer loads the relevant expert per task. ***
 
+
+### The Vercel Performance Expert
+The Vercel Performance subagent references ~/.claude/skills/react-best-practices/rules/ — this is a separate Vercel skill, not part of this repo. If you don't have it installed, the Vercel subagent will fail gracefully (no recommendations returned), and the other eight experts will work fine. The review and plan will note "Vercel — no findings" in the breakdown, which is accurate if slightly misleading.
+
+If you want the full nine-expert experience, install the Vercel React Best Practices skill separately. If you don't care about Next.js performance auditing, ignore this entirely — the council works without it.
+
+
 ## Installation
 
 ### Quick install
