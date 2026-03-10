@@ -4,7 +4,7 @@ An ultra-opinionated, multi-agent development framework for [Claude Code](https:
 
 ## But why The Carmack Council?
 
-Named after the GOAT John Carmack, and built on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic.
+Named after GOAT engineer and all around legend John Carmack, and built on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic.
 
 This skill was built for my own use with no initial intention to actually release it, and as such is tuned to my preferred greenfield stack:
 
@@ -37,7 +37,7 @@ The council is chaired by John Carmack and includes 10 domain experts:
 
 Every plan, implementation decision and review finding is grounded in the publicly shared expertise of domain leaders who build and design world-class software. Not "best practices." Not docs examples. The strong opinions of engineers and designers whose work is next level.
 
-They're all total ballers. Check out their sites, buy their books, use their products.
+They're all total ballers. Check out their sites, buy their books, use their products, enroll in their courses.
 
 
 
