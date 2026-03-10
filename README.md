@@ -1,8 +1,50 @@
-# Carmack Council
+# The Carmack Council
 
-A multi-agent development framework for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Named practitioners serve as domain experts — each with dedicated reference documents encoding their philosophy — running a structured **spec, plan, implement, review** workflow.
+An ultra-opinionated, multi-agent development framework for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Founded on my personal belief that off-the-shelf Claude Code skills often lead to average results, and stack specific skills based on real world, battle tested engineering principles leads to awesomeness. 
 
-The council is chaired by John Carmack's engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic. Every recommendation traces to a named expert and a specific principle.
+## But why The Carmack Council?
+
+Named after legendary engineer John Carmack, and based on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic. 
+
+This stack was built for my own use with no initial intention to actually release it to the public, and as such uses my preferred stack:
+
+- Next.js App Router
+- tRPC
+- Prisma
+- Neon
+- Clerk
+- CSS Modules + BEM
+- Railway
+
+I have reasons (ranging from solid to near arbitrary) for picking all of these technologies. This is what I used pre-AI, because it allowed me to get new projects spun up and working in a short space of time, whilst offering great performance, generous free tiers and decent scalability. 
+
+I'm aware that some people hate this stack or elements of it. I'm OK with that. The main point of the repo is to introduce the council concept, and it's easy enough to adapt this to your preferred/existing stack.
+
+The council is chaired by John Carmack and includes nine domain experts: 
+
+| Expert | Domain | Reference Doc |
+|--------|--------|--------------|
+| Troy Hunt | Security | `security.md` | https://www.troyhunt.com/ 
+| Martin Fowler | Refactoring / Structure | `refactoring.md` | https://martinfowler.com/
+| Kent C. Dodds | Frontend Quality | `quality-frontend.md` | https://kentcdodds.com/
+| Matteo Collina | Backend Quality | `quality-backend.md` | https://nodeland.dev/
+| Brandur Leach | Postgres Quality | `quality-postgres.md` | https://brandur.org/
+| Vercel Performance | Performance | External rules | https://vercel.com/
+| Simon Willison | LLM Pipeline Quality | `quality-llm.md` | https://simonwillison.net/
+| Karri Saarinen | UI Quality | `quality-ui.md` | https://karrisaarinen.com/
+| Vitaly Friedman | UX Quality | `quality-ux.md` | https://www.smashingmagazine.com/author/vitaly-friedman/
+| Kent Beck | Test Quality | `quality-testing.md` | https://kentbeck.com/
+
+The whole point of this approach is that all plans, implementation work and reviews are grounded in the publicly shared principles of some of the world's leading engineers and designers. Not widely regarded best practices. Not based on examples from docs. But the strong opinions of the people who build/design software that I love.
+
+These guys are all total ballers and I enourage you to check out their sites, buy their books, use their products and enroll in their courses.
+
+## Disclaimer
+If somehow a member of the council stumbles upon this repo, please know that the reason you're here is because I (and many others) see you as pretty much the absolute leader in your domain. I basically think you're awesome, and fanboy hard on your work. 
+
+If you feel like I've misrepresented you, made you look bad or just don't want your name on this at all, feel free to reach out. I'm happy to make changes.
+
+
 
 ## The Workflow
 
