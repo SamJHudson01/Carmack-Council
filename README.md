@@ -35,7 +35,7 @@ The council is chaired by John Carmack's engineering philosophy: simplicity over
 | Vitaly Friedman | UX Quality | `quality-ux.md` |
 | Kent Beck | Test Quality | `quality-testing.md` |
 
-Not every expert participates in every skill. The plan and review use all nine (plus Vercel Performance as a tenth). The implementer loads the relevant expert per task. Willison (LLM Pipeline) only participates in the plan — most code reviews don't involve LLM pipelines.
+Not every expert participates in every skill. The plan uses all ten. The review uses nine (no Willison — most code reviews don't involve LLM pipelines). The implementer loads the relevant expert per task.
 
 ## Installation
 
@@ -130,7 +130,7 @@ The principles are universal — simplicity, correctness, economic thinking. Onl
 
 Each skill is a SKILL.md file (the instruction set) plus reference documents (the domain knowledge). The SKILL.md tells Claude Code how to orchestrate — which subagents to spawn, what phases to follow, what output format to use. The reference docs give each subagent deep domain expertise.
 
-The key architectural pattern is **parallel subagents with independent context windows**. When council-review runs, the Chair (orchestrator) doesn't read every file — it builds a structural map, writes a context brief, then dispatches eight subagents in parallel. Each subagent gets its own 200k context window, reads only its domain-relevant files, and produces findings independently. The Chair then merges, deduplicates, and prioritises.
+The key architectural pattern is **parallel subagents with independent context windows**. When council-review runs, the Chair (orchestrator) doesn't read every file — it builds a structural map, writes a context brief, then dispatches nine subagents in parallel. Each subagent gets its own 200k context window, reads only its domain-relevant files, and produces findings independently. The Chair then merges, deduplicates, and prioritises.
 
 This scales to large codebases because no single context window needs to hold everything. The Chair orchestrates; the experts deep-read.
 
