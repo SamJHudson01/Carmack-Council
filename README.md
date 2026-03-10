@@ -6,7 +6,7 @@ An ultra-opinionated, multi-agent development framework for [Claude Code](https:
 
 Named after legendary engineer John Carmack, and based on his engineering philosophy: simplicity over cleverness, concrete over abstract, economic over aesthetic. 
 
-This stack was built for my own use with no initial intention to actually release it to the public, and as such uses my preferred stack:
+This stack was built for my own use with no initial intention to actually release it to the public, and as such is tuned to my preferred stack:
 
 - Next.js App Router
 - tRPC
@@ -16,7 +16,7 @@ This stack was built for my own use with no initial intention to actually releas
 - CSS Modules + BEM
 - Railway
 
-I have reasons (ranging from solid to near arbitrary) for picking all of these technologies. This is what I used pre-AI, because it allowed me to get new projects spun up and working in a short space of time, whilst offering great performance, generous free tiers and decent scalability. 
+I have reasons (ranging from solid to near arbitrary) for picking all of these technologies. This is what I used pre-AI, because it allowed me to get new projects spun up and working in a short space of time. It offers great performance, generous free tiers and decent scalability. 
 
 I'm aware that some people hate this stack or elements of it. I'm OK with that. The main point of the repo is to introduce the council concept, and it's easy enough to adapt this to your preferred/existing stack.
 
@@ -62,22 +62,7 @@ If you feel like I've misrepresented you, made you look bad or just don't want y
 
 4. **Council Review** — Nine domain experts independently review the code in parallel, each in their own context window. The Chair merges, deduplicates, and prioritises into P1/P2/P3 findings. Automated checks (tsc, lint, vitest, cypress) run first.
 
-## The Council
-
-| Expert | Domain | Reference Doc |
-|--------|--------|--------------|
-| Troy Hunt | Security | `security.md` |
-| Martin Fowler | Refactoring / Structure | `refactoring.md` |
-| Kent C. Dodds | Frontend Quality | `quality-frontend.md` |
-| Matteo Collina | Backend Quality | `quality-backend.md` |
-| Brandur Leach | Postgres Quality | `quality-postgres.md` |
-| Vercel Performance | Performance | External rules |
-| Simon Willison | LLM Pipeline Quality | `quality-llm.md` |
-| Karri Saarinen | UI Quality | `quality-ui.md` |
-| Vitaly Friedman | UX Quality | `quality-ux.md` |
-| Kent Beck | Test Quality | `quality-testing.md` |
-
-Not every expert participates in every skill. The plan uses all ten. The review uses nine (no Willison — most code reviews don't involve LLM pipelines). The implementer loads the relevant expert per task.
+*** Not every expert participates in every skill. The plan uses all ten. The review uses nine (no Willison — most code reviews don't involve LLM pipelines). The implementer loads the relevant expert per task. ***
 
 ## Installation
 
